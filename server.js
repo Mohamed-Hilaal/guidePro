@@ -1,11 +1,17 @@
 const express = require('express');
 const app = express();
+const authRouter = require('./Routes/authRouter')
 
 app.get('/', (req, res) => {
-    console.log("REQUEST: ", req.params)
-    res.send('Travel without planning')
+    res.send('Start Travelling')
 })
 
-app.listen(3000, () =>{
-    console.log('Server started on port 3000')
+app.use('/api/auth', authRouter)
+
+app.use((req, res)=>{
+    res.send("No Traveler Found")
 })
+
+// app.listen(3000, () =>{
+//     console.log('Server started on port 3000')
+// })
